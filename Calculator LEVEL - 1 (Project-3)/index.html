@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Bootstrap Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+      margin: 0;
+    }
+    .calculator {
+      width: 320px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+    .btn-calculator {
+      font-size: 1.5rem;
+      padding: 15px;
+      margin: 5px;
+      width: 100%;
+      border-radius: 10px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .btn-calculator:hover {
+      background-color: #2c3e50;
+      color: #ffffff;
+    }
+    .btn-clear {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+    .btn-clear:hover {
+      background-color: #c0392b;
+    }
+    #result {
+        border: 2px solid #3498db;
+      font-size: 1.8rem;
+      height: 60px;
+      border: none;
+      background-color: transparent;
+      text-align: right;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+  <div class="calculator">
+    
+    <input type="text" id="result" class="form-control mb-3" readonly style="border: 2px solid #3498db;">
+    <div class="row">
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('7')">7</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('8')">8</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('9')">9</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block btn-secondary" onclick="appendToResult('/')">/</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('4')">4</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('5')">5</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('6')">6</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block btn-secondary" onclick="appendToResult('*')">x</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('1')">1</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('2')">2</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('3')">3</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block btn-secondary" onclick="appendToResult('-')">-</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block" onclick="appendToResult('0')">0</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block btn-secondary" onclick="appendToResult('.')">.</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block btn-success" onclick="calculate()">=</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-calculator btn-block btn-secondary" onclick="appendToResult('+')">+</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn btn-calculator btn-block btn-clear" onclick="clearResult()">C</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-calculator btn-block btn-secondary" onclick="deleteLastCharacter()">&#9003;</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function appendToResult(value) {
+      document.getElementById('result').value += value;
+    }
+
+    function clearResult() {
+      document.getElementById('result').value = '';
+    }
+
+    function deleteLastCharacter() {
+      var result = document.getElementById('result');
+      result.value = result.value.slice(0, -1);
+    }
+
+    function calculate() {
+      var result = document.getElementById('result');
+      try {
+        result.value = eval(result.value);
+      } catch (error) {
+        result.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
